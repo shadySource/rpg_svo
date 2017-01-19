@@ -128,7 +128,7 @@ void Map::getCloseKeyframes(
 
 FramePtr Map::getClosestKeyframe(const FramePtr& frame) const
 {
-  list< pair<FramePtr,double> > close_kfs;
+  std::list< std::pair<FramePtr,double> > close_kfs;
   getCloseKeyframes(frame, close_kfs);
   if(close_kfs.empty())
   {
@@ -179,7 +179,7 @@ void Map::transform(const Matrix3d& R, const Vector3d& t, const double& s)
   {
     Vector3d pos = s*R*(*it)->pos() + t;
     Matrix3d rot = R*(*it)->T_f_w_.rotationMatrix().inverse();
-    (*it)->T_f_w_ = SE3(rot, pos).inverse();
+    (*it)->T_f_w_ = SE3d(rot, pos).inverse();
     for(auto ftr=(*it)->fts_.begin(); ftr!=(*it)->fts_.end(); ++ftr)
     {
       if((*ftr)->point == NULL)

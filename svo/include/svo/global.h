@@ -25,6 +25,7 @@
 #include <math.h>
 
 #include <Eigen/Core>
+#include <Eigen/Geometry>
 #include <opencv2/opencv.hpp>
 #include <sophus/se3.hpp>
 #include <vikit/performance_monitor.h>

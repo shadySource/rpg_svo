@@ -36,7 +36,7 @@ void getWarpMatrixAffine(
     const Vector2d& px_ref,
     const Vector3d& f_ref,
     const double depth_ref,
-    const SE3& T_cur_ref,
+    const SE3d& T_cur_ref,
     const int level_ref,
     Matrix2d& A_cur_ref)
 {
@@ -80,7 +80,7 @@ void warpAffine(
 {
   const int patch_size = halfpatch_size*2 ;
   const Matrix2f A_ref_cur = A_cur_ref.inverse().cast<float>();
-  if(isnan(A_ref_cur(0,0)))
+  if(std::isnan(A_ref_cur(0,0)))
   {
     printf("Affine warp is NaN, probably camera has no translation\n"); // TODO
     return;
@@ -107,7 +107,7 @@ void warpAffine(
 } // namespace warp
 
 bool depthFromTriangulation(
-    const SE3& T_search_ref,
+    const SE3d& T_search_ref,
     const Vector3d& f_ref,
     const Vector3d& f_cur,
     double& depth)
@@ -185,7 +185,7 @@ bool Matcher::findEpipolarMatchDirect(
     const double d_max,
     double& depth)
 {
-  SE3 T_cur_ref = cur_frame.T_f_w_ * ref_frame.T_f_w_.inverse();
+  SE3d T_cur_ref = cur_frame.T_f_w_ * ref_frame.T_f_w_.inverse();
   int zmssd_best = PatchScore::threshold();
   Vector2d uv_best;
 

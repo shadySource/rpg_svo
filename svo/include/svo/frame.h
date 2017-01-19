@@ -33,8 +33,8 @@ namespace svo {
 class Point;
 struct Feature;
 
-typedef list<Feature*> Features;
-typedef vector<cv::Mat> ImgPyr;
+typedef std::list<Feature*> Features;
+typedef std::vector<cv::Mat> ImgPyr;
 
 /// A frame saves the image, the associated features and the estimated pose.
 class Frame : boost::noncopyable
@@ -46,11 +46,11 @@ public:
   int                           id_;                    //!< Unique id of the frame.
   double                        timestamp_;             //!< Timestamp of when the image was recorded.
   vk::AbstractCamera*           cam_;                   //!< Camera model.
-  Sophus::SE3                   T_f_w_;                 //!< Transform (f)rame from (w)orld.
+  Sophus::SE3d                   T_f_w_;                 //!< Transform (f)rame from (w)orld.
   Matrix<double, 6, 6>          Cov_;                   //!< Covariance.
   ImgPyr                        img_pyr_;               //!< Image Pyramid.
   Features                      fts_;                   //!< List of features in the image.
-  vector<Feature*>              key_pts_;               //!< Five features and associated 3D points which are used to detect if two frames have overlapping field of view.
+  std::vector<Feature*>              key_pts_;               //!< Five features and associated 3D points which are used to detect if two frames have overlapping field of view.
   bool                          is_keyframe_;           //!< Was this frames selected as keyframe?
   g2oFrameSE3*                  v_kf_;                  //!< Temporary pointer to the g2o node object of the keyframe.
   int                           last_published_ts_;     //!< Timestamp of last publishing.

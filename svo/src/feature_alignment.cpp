@@ -80,7 +80,7 @@ bool align1D(
     if(u_r < halfpatch_size_ || v_r < halfpatch_size_ || u_r >= cur_img.cols-halfpatch_size_ || v_r >= cur_img.rows-halfpatch_size_)
       break;
 
-    if(isnan(u) || isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
+    if(std::isnan(u) || std::isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
       return false;
 
     // compute interpolation weights
@@ -206,7 +206,7 @@ bool align2D(
     if(u_r < halfpatch_size_ || v_r < halfpatch_size_ || u_r >= cur_img.cols-halfpatch_size_ || v_r >= cur_img.rows-halfpatch_size_)
       break;
 
-    if(isnan(u) || isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
+    if(std::isnan(u) || std::isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
       return false;
 
     // compute interpolation weights
@@ -334,7 +334,7 @@ bool align2D_SSE2(
     if(u_r < halfpatch_size || v_r < halfpatch_size || u_r >= cur_img.cols-halfpatch_size || v_r >= cur_img.rows-halfpatch_size)
       break;
 
-    if(isnan(u) || isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
+    if(std::isnan(u) || std::isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
       return false;
 
     float subpix_x = u-u_r;
@@ -497,7 +497,7 @@ bool align2D_NEON (
     if(u_r < halfpatch_size || v_r < halfpatch_size || u_r >= cur_img.cols-halfpatch_size || v_r >= cur_img.rows-halfpatch_size)
       break;
 
-    if(isnan(u) || isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
+    if(std::isnan(u) || std::isnan(v)) // TODO very rarely this can happen, maybe H is singular? should not be at corner.. check
       return false;
 
     float subpix_x = u-u_r;
