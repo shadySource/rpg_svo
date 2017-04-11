@@ -177,8 +177,13 @@ void computeHomography(
     std::vector<Vector3d>& xyz_in_cur,
     SE3d& T_cur_from_ref)
 {
+/*<<<<<<< HEAD
   std::vector<Vector2d, aligned_allocator<Vector2d> > uv_ref(f_ref.size());
   std::vector<Vector2d, aligned_allocator<Vector2d> > uv_cur(f_cur.size());
+=======*/
+  vector<Vector2d > uv_ref(f_ref.size());
+  vector<Vector2d > uv_cur(f_cur.size());
+//>>>>>>> upstream/for_pull_eigenalignfix
   for(size_t i=0, i_max=f_ref.size(); i<i_max; ++i)
   {
     uv_ref[i] = vk::project2d(f_ref[i]);
